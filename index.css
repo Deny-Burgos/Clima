@@ -21,6 +21,7 @@ body{
 
 #container{
     width: 80%;
+    max-height: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -53,4 +54,41 @@ height: 2rem;
     background-color: transparent;
     outline: none;
     text-align: center;
+}
+#paises-container{
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    max-height: 50%;
+    gap: 1rem;
+}
+.paises-info{
+    border: 1px solid #1a2e05;
+    border-radius: 0.5rem;
+}
+.pais-img{
+    width: 15rem;
+    border-radius: 0.5rem;
+}
+
+@media (min-width:768px) {
+    #input-text{
+        width: 80%;
+    }
+    #paises-container{
+        width: 90%;
+        justify-content: space-between;
+    }
+    @media (min-width: 1024px) {
+        #input-text{
+            width: 50%;
+        }
+        #paises-container{
+            width: 90%;
+            justify-content: center;
+        }
+    }
 }
