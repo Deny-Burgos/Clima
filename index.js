@@ -1,6 +1,7 @@
 const input = document.querySelector("#input");
 const informacion = document.querySelector("#paises-container");
 let countries = [];
+
 const getIp = async () => {
     try {
         const response = await (await fetch(`https://restcountries.com/v3.1/all`)).json();
@@ -15,13 +16,14 @@ const getWeather = async (lat, lon) => {
     try {
         const weatherResponse = await (await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=75ef195357bb4c86442cecf9f177705d&lang={es}`)).json();
         const clima = weatherResponse.weather[0].description;
-        return clima
+        const temperatura = weatherResponse.main.temp;
+        return {clima,temperatura}
     } catch (error) {
         alert('error')
     }
 }
 
-input.addEventListener("input", e =>{
+input.addEventListener("input",async e =>{
     e.preventDefault();
     const filteredCountries = countries.filter(country => country.name.common.toLowerCase().startsWith(input.value.toLowerCase()));
     informacion.innerHTML = '';
@@ -43,7 +45,8 @@ input.addEventListener("input", e =>{
     if (filteredCountries.length === 1) {
         const lat = filteredCountries[0].latlng[0];  
         const lon = filteredCountries[0].latlng[1];
-        getWeather(lat,lon);
+        const ambiente = await getWeather(lat,lon);
+        console.log(ambiente);
         informacion.innerHTML =  `
         <div class="paises-info">
         <img class = "pais-img" src="${filteredCountries[0].flags.svg}" alt="">
@@ -52,7 +55,7 @@ input.addEventListener("input", e =>{
                 <p><span>Poblacion:</span> ${filteredCountries[0].population}</p>
                 <p><span>Capital:</span> ${filteredCountries[0].capital}</p>
                 <p><span>Region:</span> ${filteredCountries[0].region}</p>
-                <p><span>Clima:</span> ${lat}</p>
+                <p><span>Clima:</span> ${ambiente.clima}</p>
                 </div>
             </div>
             `
