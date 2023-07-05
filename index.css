@@ -25,13 +25,14 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 1rem;
 }
 
 h1,h3,p{
     text-align: center;
 }
-h1{
-    color: #d9f99d;
+#world{
+    width: 15rem;
 }
 #input-text{
     padding: 0.5rem;
@@ -65,14 +66,92 @@ height: 2rem;
     max-height: 50%;
     gap: 1rem;
 }
-.paises-info{
+span{
+    font-weight: bold;
+}
+.paises-info10{
     border: 1px solid #1a2e05;
     border-radius: 0.5rem;
+    background-color: #3f6212;
+}
+.name-country10{
+    text-decoration: underline 2px;
+    text-underline-position: under;
 }
 .pais-img{
     width: 15rem;
     border-radius: 0.5rem;
+    height: 10rem;
+    object-fit: cover;
 }
+.paises-info{
+    border: 1px solid #1a2e05;
+    border-radius: 0.5rem;
+    backdrop-filter: brightness(1.2);
+}
+.informacion{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ellipsis div {
+    display: flex;
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #88eb06;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+
 
 @media (min-width:768px) {
     #input-text{
@@ -80,15 +159,48 @@ height: 2rem;
     }
     #paises-container{
         width: 90%;
-        justify-content: space-between;
+        justify-content: center;
     }
+      #tittle{
+        font-size: x-large;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .informacion{
+            gap: 1rem;
+            flex-direction: row;
+            margin: 0 1rem;
+        }
+        .paises-info{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     @media (min-width: 1024px) {
+        #world{
+            width: 25rem;
+        }
         #input-text{
             width: 50%;
         }
+
         #paises-container{
             width: 90%;
             justify-content: center;
+        }
+        #tittle{
+            display: flex;
+            align-items: center;
+        }
+        .informacion{
+            gap: 1rem;
+            flex-direction: row;
+        }
+        .paises-info{
+            gap: 1rem;
+            display: flex;
+            flex-direction: row;
         }
     }
 }

@@ -14,10 +14,12 @@ getIp();
 
 const getWeather = async (lat, lon) => {
     try {
-        const weatherResponse = await (await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=75ef195357bb4c86442cecf9f177705d&lang={es}`)).json();
+        const weatherResponse = await (await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=75ef195357bb4c86442cecf9f177705d&units=metric`)).json();
         const clima = weatherResponse.weather[0].description;
         const temperatura = weatherResponse.main.temp;
-        return {clima,temperatura}
+        const iconClima = weatherResponse.weather[0].icon;
+        console.log(clima);
+        return {clima,temperatura,iconClima}
     } catch (error) {
         alert('error')
     }
@@ -35,9 +37,9 @@ input.addEventListener("input",async e =>{
         filteredCountries.forEach(index => {
             informacion.innerHTML +=
             `
-            <div class="paises-info">
+            <div class="paises-info10">
             <img class = "pais-img" src="${index.flags.svg}" alt="">
-            <h3>${index.name.common}</h3>
+            <h3 class="name-country10">${index.name.common}</h3>
             </div>
             `
         });
@@ -50,12 +52,14 @@ input.addEventListener("input",async e =>{
         informacion.innerHTML =  `
         <div class="paises-info">
         <img class = "pais-img" src="${filteredCountries[0].flags.svg}" alt="">
-        <h3>${filteredCountries[0].name.common}</h3>
+        <h3 id="tittle">${filteredCountries[0].name.common}</h3>
                 <div class="informacion">
                 <p><span>Poblacion:</span> ${filteredCountries[0].population}</p>
                 <p><span>Capital:</span> ${filteredCountries[0].capital}</p>
                 <p><span>Region:</span> ${filteredCountries[0].region}</p>
+                <p><span>Temperatura:</span> ${ambiente.temperatura} <span>°C</span></p>
                 <p><span>Clima:</span> ${ambiente.clima}</p>
+                <img src="https://openweathermap.org/img/wn/${ambiente.iconClima}@2x.png" alt="">
                 </div>
             </div>
             `
